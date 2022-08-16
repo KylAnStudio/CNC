@@ -1,0 +1,94 @@
+1
+sudo apt update
+sudo apt install python3-pip
+
+python --version
+sudo apt install python3
+sudo apt install python
+sudo apt install python-minimal
+
+Upgrade QtPyVCP
+python3 -m pip install --upgrade qtpyvcp
+
+pip install GitPython
+or
+sudo apt install git-all
+or 
+apt-get install git
+
+git clone https://github.com/kcjengr/qtpyvcp
+
+sudo apt install qttools5-dev qttools5-dev-tools python3-wheel
+
+python3 -m pip install sphinx sphinx_rtd_theme mock sphinx-notfound-page
+
+python3 -m pip install git+https://github.com/KurtJacobson/sphinx-gitstamp@MoreInfo
+
+python3 -m pip install --editable .
+
+qtpyvcp -h
+
+QtDesigner Plugins
+If you want to edit a VCP or create one from a template you need to have the QtDesigner plugins installed.
+To load, you must have the correct version of libpyqt5.so in /usr/lib/x86_64-linux-gnu/qt5/plugins/designer/. 
+Precompiled libraries suitable for 64Bit Debian Stretch (or other system with Qt v5.11.3 and Py v3.9)
+are included in the QtDesigner directory. The easiest way to install the libs to the correct location is to use the install.sh 
+script located in the qtpyvcp/pyqt5designer/Qt5.11.3-64bit directory with this command.
+
+sudo ./install.sh
+
+If you are using a different architecture or Qt version you may need to compile PyQt5 from source to get the proper libpyqt5.so file. 
+The steps should be similar those listed here.
+
+
+1.1. Get Designer to include linuxcnc widgets
+You must have designer installed; These commands should add it:
+Or use your package manager to install the same:
+sudo apt-get install qttools5-dev-tools
+sudo apt-get install qttools5.dev
+
+Then you need the python-module loading library added.
+Qtvcp uses QT5 with python2 - this combination is not normally available from
+repositories. You can compile it your self or there are precompiled versions
+available for common systems.
+in lib/python/qtvcp/designer there are folders based on system architectures
+and then QT version.
+You must pick the cpu architecture folder then pick the series; 5.5, 5.7, or 5.9 of Qt.
+currently Debian stretch uses 5.7, Mint 12 uses 5.5, Mint 19 uses 5.9
+if in doubt check the version of QT5 on the system.
+
+You must decompress the file and then copy that proper version of
+libpyqt5_py2.so to this folder:
+/usr/lib/x86_64-linux-gnu/qt5/plugins/designer
+(x86_64-linux-gnu might be called something slightly different
+on different systems)
+
+You will require super user privileges to copy the file to the folder.
+
+then you must add a link to the qtvcp_plugin.py to the folder that designer will search.
+
+In a RIP version of linuxcnc qtvcp_plugin.py will be in:
+~/LINUXCNC_PROJECT_NAME/lib/python/qtvcp/plugins/qtvcp_plugin.py
+
+installed version should be:
+usr/lib/python2.7/qtvcp/plugins/qtvcp_plugin.py
+or usr/lib/python2.7/dist-packages/qtvcp/plugins/qtvcp_plugin.py
+
+make a link file to the above file and move it to one of the places Designer searches:
+
+Designer searches in these two place for links (pick one):
+This can be:
+/usr/lib/x86_64-linux-gnu/qt5/plugins/designer/python
+or
+~/.designer/plugins/python
+You may need to add the plugins/python folders
+
+To start Designer:
+
+for a RIP installed:
+open a terminal, set the environment for linuxcnc with the command: . scripts/rip-environment
+then load designer with : designer -qt=5
+
+otherwise for an installed version, open a terminal and type designer -qt=5
+
+If all goes right you will see the selectable linuxcnc widgets on the left hand side
