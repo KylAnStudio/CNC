@@ -1,0 +1,63 @@
+EDIT: Updated for Buster repo since Strech is not built any more.
+
+-
+This is an easy way to have LinuxCNC running very quickly on Linux Mint 19.3, Mate and XFCE edition work, Cinnamon might not.
+Download Mate version from here:
+https://www.linuxmint.com/edition.php?id=276
+OR, not both
+XFCE version form here:
+https://www.linuxmint.com/edition.php?id=278
+-Install Linux Mint 19.3
+-Copy and paste these lines in terminal, one by one:
+-
+sudo apt update
+-
+wget http://ftp.us.debian.org/debian/pool/main/l/linux/linux-image-4.9.0-13-rt-amd64_4.9.228-1_amd64.deb
+wget http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-10/gcc-10-base_10.3.0-1ubuntu1~20.04_amd64.deb
+wget http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-10/libgcc-s1_10.3.0-1ubuntu1~20.04_amd64.deb
+wget http://archive.ubuntu.com/ubuntu/pool/universe/b/boost1.67/libboost-python1.67.0_1.67.0-17ubuntu8_amd64.deb
+wget http://archive.ubuntu.com/ubuntu/pool/universe/libm/libmodbus/libmodbus5_3.1.6-2_amd64.deb
+wget http://archive.ubuntu.com/ubuntu/pool/main/libu/libusb-1.0/libusb-1.0-0_1.0.23-2build1_amd64.deb
+-
+sudo gdebi linux-image-4.9.0-13-rt-amd64_4.9.228-1_amd64.deb
+sudo gdebi gcc-10-base_10.3.0-1ubuntu1~20.04_amd64.deb
+sudo gdebi libgcc-s1_10.3.0-1ubuntu1~20.04_amd64.deb
+sudo gdebi libboost-python1.67.0_1.67.0-17ubuntu8_amd64.deb
+sudo gdebi libmodbus5_3.1.6-2_amd64.deb
+sudo gdebi libusb-1.0-0_1.0.23-2build1_amd64.deb
+-
+sudo apt-key adv --keyserver hkp://keys.gnupg.net:80 --recv-key EF1B07FEE0EE663E
+-
+-For Master version, unstable, still under development
+sudo apt-add-repository 'deb http://buildbot.linuxcnc.org/ buster master-rtpreempt'
+-OR, not both.
+-For 2.8 version, stable, to be current release
+sudo apt-add-repository 'deb http://buildbot.linuxcnc.org/ buster 2.8-rtpreempt'
+-
+sudo apt-get update
+-
+sudo apt-get -y install linuxcnc-uspace
+
+---
+If the above keyserver does not work, try these:
+sudo apt-key adv --keyserver hkp://keys.openpgp.org --recv-key EF1B07FEE0EE663E
+OR
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv-key EF1B07FEE0EE663E
+OR
+sudo apt-key adv --keyserver hkp://pgpkeys.eu --recv-key EF1B07FEE0EE663E
+---
+-
+Editing the GRUB menu
+sudo add-apt-repository ppa:danielrichter2007/grub-customizer
+sudo apt-get update
+sudo apt-get install grub-customizer
+
+How to use:
+itsfoss.com/grub-customizer-ubuntu/
+It is for Ubuntu, same applies for Mint.
+--
+-For LinuxCNC dev, this package is also needed:
+wget http://ftp.br.debian.org/debian/pool/main/y/yapps2/python-yapps_2.2.1-3_all.deb
+sudo gdebi python-yapps_2.2.1-3_all.deb
+sudo apt install linuxcnc-uspace-dev
+----Reboot, enjoy.
