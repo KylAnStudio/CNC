@@ -1,0 +1,14 @@
+# Include your custom_postgui HAL commands here
+# This file will not be overwritten when you run stepconf again
+
+net zeroaxis		<= halui.mdi-command-00		<= gladevcp.btn_zeroXYZA
+net zerox			<= halui.mdi-command-01		<= gladevcp.btn_zeroX
+net zeroy			<= halui.mdi-command-02		<= gladevcp.btn_zeroY
+net zeroz			<= halui.mdi-command-03		<= gladevcp.btn_zeroZ
+net zeroa			<= halui.mdi-command-04		<= gladevcp.btn_zeroA
+net gotozero		<= halui.mdi-command-05		<= gladevcp.btn_gotozero
+net gotozeroz		<= halui.mdi-command-06		<= gladevcp.btn_gozeroZ
+net a90				<= halui.mdi-command-07		<= gladevcp.btn_gotoA90
+net a180			<= halui.mdi-command-08		<= gladevcp.btn_gotoA180
+net a270			<= halui.mdi-command-09		<= gladevcp.btn_gotoA270
+net a360			<= halui.mdi-command-10		<= gladevcp.btn_gotoA360
